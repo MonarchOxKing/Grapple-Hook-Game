@@ -839,6 +839,11 @@ PrefabInstance:
       propertyPath: origin
       value: 
       objectReference: {fileID: 370752159}
+    - target: {fileID: 4436491309615363242, guid: c0098e2144e37f94d97331768a676108,
+        type: 3}
+      propertyPath: pull_force
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4436491309615363243, guid: c0098e2144e37f94d97331768a676108,
         type: 3}
       propertyPath: m_LocalPosition.x
