@@ -14,10 +14,16 @@ public class SpiderRope : MonoBehaviour
     public float speed = 75;
     public float pull_force = 50;
 
+    public float stayTime = 1f;
+
+    private IEnumerator timer;
+
     private Vector3 velocity;
 
     private bool update = false;
     private bool pull = false;
+
+
     void Start()
     {
         line = GetComponent<LineRenderer>();
@@ -39,6 +45,12 @@ public class SpiderRope : MonoBehaviour
         transform.position = origin.position + dir;
         pull = false;
         update = true;
+
+        if(timer != null)
+        {
+            StopCoroutine(timer);
+            timer = null;
+        }
     }
 
     // Update is called once per frame
@@ -69,10 +81,19 @@ public class SpiderRope : MonoBehaviour
         line.SetPosition(0, transform.position);
         line.SetPosition(1, origin.position);
     }
+    IEnumerator reset(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        update = false;
+        line.SetPosition(0, Vector2.zero);
+        line.SetPosition(1, Vector2.zero);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         velocity = Vector2.zero;
         pull = true;
+        timer = reset(stayTime);
+        StartCoroutine(timer);
     }
 }
