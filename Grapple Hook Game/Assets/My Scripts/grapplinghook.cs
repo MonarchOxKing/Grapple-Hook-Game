@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrapplingHook : MonoBehaviour
+public class grapplinghook : MonoBehaviour
 {
     DistanceJoint2D joint;
     Vector3 targetPos;
