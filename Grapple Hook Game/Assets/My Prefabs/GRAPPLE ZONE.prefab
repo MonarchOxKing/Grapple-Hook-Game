@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 1682585753306582519}
   - component: {fileID: 1682585753306582506}
   - component: {fileID: 1682585753306582505}
-  - component: {fileID: 1682585753306582504}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: NEW GRAPPLE POINT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,25 +103,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!232 &1682585753306582504
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682585753306582518}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 12.109868
-  m_MaxDistanceOnly: 0
 --- !u!1 &1682585753392481761
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,9 +115,9 @@ GameObject:
   - component: {fileID: 1682585753392481764}
   - component: {fileID: 1682585753392481763}
   - component: {fileID: 1682585753392481762}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GRAPPLE ZONE
-  m_TagString: Untagged
+  m_TagString: Grapple Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
