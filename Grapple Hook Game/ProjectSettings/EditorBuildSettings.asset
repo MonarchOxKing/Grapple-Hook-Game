@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/My Scenes/Alex Testing  Scene.unity
     guid: f658c46f1852839408ee9e99a95f3e0b
+  - enabled: 1
+    path: Assets/My Scenes/Options Menu.unity
+    guid: fe0719c032cb0fc4ea8d27982b2bb3a0
   m_configObjects: {}
