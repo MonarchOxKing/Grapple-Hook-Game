@@ -191,7 +191,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: 
+          value: Player
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -416,7 +416,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: {fileID: 527362087898813946}
+          value: {fileID: 1155225899802988987}
         - useVariable: 0
           name: 
           tooltip: 
@@ -428,7 +428,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: {fileID: 527362087898813946}
+          value: {fileID: 1155225899802988987}
         fsmOwnerDefaultParams:
         - ownerOption: 1
           gameObject:
@@ -515,7 +515,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: {x: 0, y: 0, z: 0}
+          value: {x: 0.000000014523238, y: 0.000000005446214, z: 0}
         - useVariable: 1
           name: 
           tooltip: 
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 1155225899802988967}
   m_Layer: 11
   m_Name: Grapple Point Sprite
-  m_TagString: Untagged
+  m_TagString: Grapple Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
