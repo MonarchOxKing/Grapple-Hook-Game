@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527362087898813946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.64, y: 3.23, z: 0}
+  m_LocalPosition: {x: 0.63, y: 2.84, z: 0}
   m_LocalScale: {x: 16.688114, y: 16.688114, z: 16.688114}
   m_Children:
   - {fileID: 1155225899802988986}
@@ -396,40 +396,37 @@ MonoBehaviour:
       actionData:
         actionNames:
         - HutongGames.PlayMaker.Actions.EnableBehaviour
+        - HutongGames.PlayMaker.Actions.EnableBehaviour
         - HutongGames.PlayMaker.Actions.MoveTowards
         - HutongGames.PlayMaker.Actions.GetButtonUp
-        - HutongGames.PlayMaker.Actions.DrawDebugLine
         customNames:
         - 
         - 
         - 
         - 
-        actionEnabled: 01000101
+        actionEnabled: 01010101
         actionIsOpen: 01010101
-        actionStartIndex: 00000000050000000c0000000f000000
-        actionHashCodes: 3a4cad05fa0e54021012c100d3390505
+        actionStartIndex: 00000000050000000a00000011000000
+        actionHashCodes: 3a4cad053a4cad05fa0e54021012c100
         unityObjectParams:
         - {fileID: 0}
+        - {fileID: 527362087898813950}
         fsmGameObjectParams:
         - useVariable: 0
           name: 
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: {fileID: 1155225899802988987}
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {fileID: 0}
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {fileID: 1155225899802988987}
+          value: {fileID: 527362087898813946}
         fsmOwnerDefaultParams:
+        - ownerOption: 1
+          gameObject:
+            useVariable: 0
+            name: 
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         - ownerOption: 1
           gameObject:
             useVariable: 0
@@ -453,6 +450,12 @@ MonoBehaviour:
         fsmPropertyParams: []
         layoutOptionParams: []
         fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: LineMaker
         - useVariable: 0
           name: 
           tooltip: 
@@ -501,6 +504,18 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
+          value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 1
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
           value: 0
         - useVariable: 1
           name: Not Clicking
@@ -515,26 +530,8 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: {x: 0.000000014523238, y: 0.000000005446214, z: 0}
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {x: 0, y: 0, z: 0}
-        - useVariable: 1
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {x: 0, y: 0, z: 0}
-        fsmColorParams:
-        - useVariable: 0
-          name: 
-          tooltip: 
-          showInInspector: 0
-          networkSync: 0
-          value: {r: 1, g: 1, b: 1, a: 1}
+          value: {x: 0.00000001428673, y: 0.000000007143365, z: 0}
+        fsmColorParams: []
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams:
@@ -545,8 +542,13 @@ MonoBehaviour:
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 140000001200000005000000110000001100000014000000130000001c000000110000000f0000000f00000017000000120000001700000011000000130000001c000000130000001c00000019000000
+        paramDataType: 1400000012000000050000001100000011000000140000001200000005000000110000001100000014000000130000001c000000110000000f0000000f00000017000000120000001700000011000000
         paramName:
+        - gameObject
+        - behaviour
+        - component
+        - enable
+        - resetOnExit
         - gameObject
         - behaviour
         - component
@@ -562,12 +564,7 @@ MonoBehaviour:
         - buttonName
         - sendEvent
         - storeResult
-        - fromObject
-        - fromPosition
-        - toObject
-        - toPosition
-        - color
-        paramDataPos: 0000000000000000000000000000000001000000010000000000000000000000020000000000000001000000000000000100000001000000030000000100000001000000020000000200000000000000
+        paramDataPos: 0000000000000000000000000000000001000000010000000100000001000000020000000300000002000000000000000000000004000000000000000100000000000000020000000100000005000000
         paramByteDataSize: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     events:
     - name: FINISHED
@@ -707,7 +704,7 @@ DistanceJoint2D:
   m_GameObject: {fileID: 527362087898813946}
   m_Enabled: 0
   serializedVersion: 4
-  m_EnableCollision: 0
+  m_EnableCollision: 1
   m_ConnectedRigidBody: {fileID: 0}
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
