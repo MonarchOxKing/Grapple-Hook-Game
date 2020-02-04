@@ -8,6 +8,7 @@ TagManager:
   - Grapple Point
   - GROUND
   - Death Area Tag
+  - Finish Line
   layers:
   - Default
   - TransparentFX
