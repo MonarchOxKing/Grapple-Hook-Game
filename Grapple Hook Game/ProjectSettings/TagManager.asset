@@ -46,6 +46,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: New Layer
+  - name: Stage Objects
     uniqueID: 1786099893
+    locked: 0
+  - name: New Layer
+    uniqueID: 3750112435
     locked: 0
