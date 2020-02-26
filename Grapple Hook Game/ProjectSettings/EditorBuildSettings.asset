@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/My Scenes/Main Menu Scenes/Main Menu Scene.unity
     guid: 7e642168170654c4ba3a50151c1a885d
+  - enabled: 1
+    path: Assets/My Scenes/Level design test.unity
+    guid: fede2a1c6f2e34043b54457999c70c75
+  - enabled: 1
+    path: Assets/My Scenes/Main Menu Scenes/Character Select Scene.unity
+    guid: 888ab7f60dfb9b44cae9bdce4b8467f2
   m_configObjects: {}
