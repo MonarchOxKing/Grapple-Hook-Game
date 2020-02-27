@@ -64,7 +64,14 @@ public class PlayerMaster : MonoBehaviour
 			Jump();
 			dJoint.enabled = true;
 			SelectHook();
-			rb.AddForce(Vector2.right * hookForce);
+
+			//tangent force
+			Vector2 dir = (transform.position - position2.transform.position).normalized;
+			dir = Vector2.Perpendicular(dir);
+			rb.AddForce(dir * hookForce);
+
+			//right force
+			//rb.AddForce(Vector2.right * hookForce);
 		}
 
 
