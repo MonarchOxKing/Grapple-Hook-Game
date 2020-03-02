@@ -365,23 +365,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7864425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14480cdbaa92a904a993a200502b9e73, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  hookButton: 32
-  doMovement: 1
-  speedMod: 2
-  jumpForce: 300
-  hookForce: 200
-  deathObj: {fileID: 1311340665535996394, guid: 8a325525ac8507247ab76f514487ffa5,
-    type: 3}
-  position1: {fileID: 7864432}
-  position2: {fileID: 0}
-  lineR: {fileID: 7864429}
-  lineColour: {r: 1, g: 0.42001867, b: 0, a: 0}
-  myMaterial: {fileID: 0}
-  hookPointTag: Grapple Point
-  tileAmount: 0
 --- !u!4 &7864432
 Transform:
   m_ObjectHideFlags: 0
@@ -422,13 +408,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 547189489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 757fdc260b693084cbb2fb3c86593878, type: 3}
+  m_Script: {fileID: 11500000, guid: 486bf98c31e80ec498171c507067a110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hookPointObj: {fileID: 7538972715564050807, guid: 3b96a8e4e9a6f0c4997b92a0345c610e,
+  hookPointObj: {fileID: 7538972715564050807, guid: 4fb53de61a35bbd4f853082184754da9,
     type: 3}
-  hookGap: 10
-  verticalVar: 2
+  hookGap: 0
+  verticalVar: 0
 --- !u!4 &547189491
 Transform:
   m_ObjectHideFlags: 0

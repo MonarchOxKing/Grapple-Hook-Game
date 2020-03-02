@@ -365,20 +365,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7864425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb5e600bcbda0f4dbd5c84d817085ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bb871ada4fc358439533c17cd0a93cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hookButton: 32
   doMovement: 0
-  speedMod: 2
-  jumpForce: 2
-  hookForce: 100
+  speedMod: 0
+  jumpForce: 300
+  hookForce: 200
   deathObj: {fileID: 0}
   position1: {fileID: 7864432}
   position2: {fileID: 0}
   lineR: {fileID: 7864429}
-  lineColour: {r: 0, g: 0, b: 0, a: 0}
-  myMaterial: {fileID: 2100000, guid: bdafd781faaabe8408ce2248283a8f3a, type: 2}
+  lineColour: {r: 0, g: 1, b: 0.9616327, a: 0}
+  myMaterial: {fileID: 0}
   hookPointTag: Grapple Point
   tileAmount: 0
 --- !u!4 &7864432
@@ -421,12 +421,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 547189489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9ecb3074e270824e920375884ebbaf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 486bf98c31e80ec498171c507067a110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hookPointObj: {fileID: 7538972715564050807, guid: 2ea82bab61be5834086202312efe41b0,
+  hookPointObj: {fileID: 7538972715564050807, guid: 4fb53de61a35bbd4f853082184754da9,
     type: 3}
-  hookGap: 5
+  hookGap: 3
   verticalVar: 1.5
 --- !u!4 &547189491
 Transform:
@@ -577,7 +577,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.2
+  orthographic size: 3.15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -616,11 +616,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1658323990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76ac7af60835a934dbad71c90289bfdc, type: 3}
+  m_Script: {fileID: 11500000, guid: 3cdec7cfe27c9fc4bbd66401bd7f914d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 7864425}
-  yMaxLock: 5
+  yMaxLock: 3.5
   yMinLock: -2
 --- !u!1 &1854257857
 GameObject:
@@ -686,7 +686,7 @@ SpriteRenderer:
   m_Size: {x: 14.4, y: 8.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1854257859
