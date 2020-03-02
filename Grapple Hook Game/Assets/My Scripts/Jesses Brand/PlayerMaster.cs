@@ -15,16 +15,21 @@ public class PlayerMaster : MonoBehaviour
 	private DistanceJoint2D dJoint;
 	private Rigidbody2D rb;
 
+	private SpriteRenderer sRenderer;
+	public Sprite sprRightSwing;
+	public Sprite sprLeftSwing;
+	public Sprite sprIdleAir;
+
 	public GameObject deathObj;
 	//Line Renderer
 	#region
 	[Header("Line Rendering")]
-	public Transform position1; //Player
-	public Transform position2; //hookpoint
-	public LineRenderer lineR; //the line render
+	//public Transform position1; //Player
+	private Transform position2; //hookpoint
+	private LineRenderer lineR; //the line render
 	public Color lineColour; //line colour 
 	public Material myMaterial; 
-	public string hookPointTag; //Tag of hookpoints 
+	private string hookPointTag; //Tag of hookpoints 
 	public int tileAmount;
 	private GameObject lastHookPoint;
 	#endregion
@@ -35,8 +40,10 @@ public class PlayerMaster : MonoBehaviour
 
 		rb = GetComponent<Rigidbody2D>();
 		dJoint = GetComponent<DistanceJoint2D>();
-
-
+		lineR = GetComponent<LineRenderer>();
+		hookPointTag = "Grapple Point";
+		sRenderer = GetComponent<SpriteRenderer>();
+		sRenderer.sprite = sprRightSwing;
 		//Line Rendering
 		lineR.material.color = lineColour;
 		lineR.material = myMaterial;
@@ -70,30 +77,49 @@ public class PlayerMaster : MonoBehaviour
 			dir = Vector2.Perpendicular(dir);
 			rb.AddForce(dir * hookForce);
 
+
 			//right force
 			//rb.AddForce(Vector2.right * hookForce);
 		}
 
-
-
-
-
-		if (Input.GetKey(KeyCode.Space))
+		if (Input.GetKey(hookButton))
 		{
 			LineRendering();
-
+			SpriteSetter();
 		}
 
-
-		if (Input.GetKeyUp(KeyCode.Space))
+		if (Input.GetKeyUp(hookButton))
 		{
 			lineR.enabled = false;
 			dJoint.enabled = false;
+			sRenderer.sprite = sprIdleAir;
 		}
 
 		
+
+
+
 	}
 
+	void SpriteSetter()
+	{
+		//if (transform.position.x < position2.position.x && sRenderer.sprite != sprRightSwing)
+		if (transform.position.x < position2.position.x && sRenderer.sprite != sprRightSwing)
+		{
+			print("moving right");
+			sRenderer.sprite = sprRightSwing;
+		}
+		else if (transform.position.x >= position2.position.x && sRenderer.sprite != sprLeftSwing)
+		{
+			print("moving left");
+			sRenderer.sprite = sprLeftSwing;
+
+		}
+		else
+		{
+			print("Swing Sprite Error");
+		}
+	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
@@ -142,12 +168,14 @@ public class PlayerMaster : MonoBehaviour
 	void LineRendering()
 	{		
 
-		lineR.SetPosition(0, position1.position);
+		//lineR.SetPosition(0, position1.position);
+		lineR.SetPosition(0, transform.position);
 		lineR.SetPosition(1, position2.position);
 
 		dJoint.connectedAnchor = position2.position;
 
-		float dist = Vector3.Distance(position1.position, position2.position);
+		//float dist = Vector3.Distance(position1.position, position2.position);
+		float dist = Vector3.Distance(transform.position, position2.position);
 		lineR.material.mainTextureScale = new Vector2(dist * 1, 1);
 		
 	}
@@ -155,10 +183,12 @@ public class PlayerMaster : MonoBehaviour
 	{
 		Transform tMin = null;
 		float minDist = Mathf.Infinity;
-		Vector3 currentPos = position1.position;
+		//Vector3 currentPos = position1.position;
+		Vector3 currentPos = transform.position;
 		foreach (Transform t in points)
 		{
-			if (t.position.x > position1.position.x) //make it not do ones behind it
+			//if (t.position.x > position1.position.x) //make it not do ones behind it
+			if (t.position.x > transform.position.x) //make it not do ones behind it
 			{
 				float dist = Vector3.Distance(t.position, currentPos);
 				if (dist < minDist)

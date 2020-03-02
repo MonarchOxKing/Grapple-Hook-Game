@@ -182,7 +182,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7864428
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!120 &7864429
 LineRenderer:
@@ -253,7 +253,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -365,9 +365,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7864425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 5259b1655b6df3149aa092fe89b7c911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hookButton: 32
+  doMovement: 1
+  speedMod: 2
+  jumpForce: 300
+  hookForce: 200
+  sprRightSwing: {fileID: 21300000, guid: 729f802415aab114b9e12bcfaae68eb8, type: 3}
+  sprLeftSwing: {fileID: 21300000, guid: 6ab195786e1e9d744b47b0b5466fd00e, type: 3}
+  sprIdleAir: {fileID: 21300000, guid: 20216caca3c020c45857c6dd52d0dccc, type: 3}
+  deathObj: {fileID: 1311340665535996394, guid: 60e2c56690194744b8ccbcb8b3cfb3e7,
+    type: 3}
+  lineColour: {r: 0, g: 0, b: 0, a: 0}
+  myMaterial: {fileID: 0}
+  tileAmount: 0
 --- !u!4 &7864432
 Transform:
   m_ObjectHideFlags: 0
@@ -376,8 +389,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7864425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -408,13 +421,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 547189489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 486bf98c31e80ec498171c507067a110, type: 3}
+  m_Script: {fileID: 11500000, guid: 145b714cb60c71f478048330ccd5b572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hookPointObj: {fileID: 7538972715564050807, guid: 4fb53de61a35bbd4f853082184754da9,
+  hookPointObj: {fileID: 7538972715564050807, guid: 1a2749c8cc470fe48932d4f95b8e1d10,
     type: 3}
-  hookGap: 0
-  verticalVar: 0
+  hookGap: 10
+  verticalVar: 1.5
 --- !u!4 &547189491
 Transform:
   m_ObjectHideFlags: 0
@@ -439,6 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 572380308}
   - component: {fileID: 572380307}
+  - component: {fileID: 572380309}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -510,6 +524,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &572380309
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572380306}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!1 &1658323990
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,9 +643,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1658323990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07a62a77ff0c4e44c9a18de5194b4cb3, type: 3}
+  m_Script: {fileID: 11500000, guid: b58ad899807dc1e48a6529a074ef2121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 7864425}
-  yMaxLock: 2
-  yMinLock: -2
+  yMaxLock: 3
+  yMinLock: -3
