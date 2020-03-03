@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class PlayerMaster : MonoBehaviour
 {
+	public enum PlayerState
+	{
+		Swinging,
+		Running,
+		Flying
+
+	}
+	public PlayerState myState;
+
 	public KeyCode hookButton;
 
 	public bool doMovement;
@@ -11,6 +20,7 @@ public class PlayerMaster : MonoBehaviour
 	public float speedMod;
 	public int jumpForce;
 	public int hookForce;
+	public int verticalHookForce;
 
 	private DistanceJoint2D dJoint;
 	private Rigidbody2D rb;
@@ -21,6 +31,8 @@ public class PlayerMaster : MonoBehaviour
 	public Sprite sprIdleAir;
 
 	public GameObject deathObj;
+
+	private bool unHook;
 	//Line Renderer
 	#region
 	[Header("Line Rendering")]
@@ -59,16 +71,40 @@ public class PlayerMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		//Movement
-		if (doMovement) //make false if not touching ground tag or something
+
+		switch (myState)
 		{
-			transform.Translate(Vector3.right * speedMod * Time.deltaTime, Space.World);
-			
+			case PlayerState.Swinging:
+				transform.Translate(Vector3.right * speedMod * Time.deltaTime, Space.World);
+
+				break;
+
+			case PlayerState.Running:
+				transform.Translate(Vector3.right * speedMod * Time.deltaTime, Space.World);
+				break;
+
+			case PlayerState.Flying:
+				transform.Translate(Vector3.right * speedMod * Time.deltaTime, Space.World); //<---- this could be affecting smoothness
+				break;
 		}
+
+		
 
 		if (Input.GetKeyDown(hookButton))
 		{
-			Jump();
+
+			if (myState == PlayerState.Running)
+			{
+				Jump();
+			}
+
+			if (myState == PlayerState.Flying)
+			{
+				rb.AddForce(Vector2.up * verticalHookForce);
+			}
+
+			myState = PlayerState.Swinging;
+
 			dJoint.enabled = true;
 			SelectHook();
 
@@ -77,28 +113,35 @@ public class PlayerMaster : MonoBehaviour
 			dir = Vector2.Perpendicular(dir);
 			rb.AddForce(dir * hookForce);
 
-
+			unHook = false;
 			//right force
 			//rb.AddForce(Vector2.right * hookForce);
 		}
 
 		if (Input.GetKey(hookButton))
 		{
-			LineRendering();
-			SpriteSetter();
+			if (!unHook)
+			{
+				LineRendering();
+				SpriteSetter();
+
+			}
 		}
 
 		if (Input.GetKeyUp(hookButton))
 		{
-			lineR.enabled = false;
-			dJoint.enabled = false;
-			sRenderer.sprite = sprIdleAir;
+			UnHook();
 		}
+	}
 
-		
-
-
-
+	void UnHook()
+	{
+		lineR.enabled = false;
+		dJoint.enabled = false;
+		sRenderer.sprite = sprIdleAir;
+		//myState = PlayerState.Running;
+		myState = PlayerState.Flying;
+		unHook = true;
 	}
 
 	void SpriteSetter()
@@ -137,6 +180,35 @@ public class PlayerMaster : MonoBehaviour
 			Destroy(gameObject);
 
 			GameObject myDeathObj = Instantiate(deathObj, transform.position, transform.rotation);
+
+		}
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("GROUND"))
+		{
+			if (myState == PlayerState.Swinging)
+			{
+				UnHook();
+			}
+			
+				myState = PlayerState.Running;
+
+			
+
+
+		}
+	}
+
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("GROUND"))
+		{
+			if (myState == PlayerState.Running)
+			{
+				myState = PlayerState.Flying;
+			}
 
 		}
 	}
