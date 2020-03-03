@@ -26,10 +26,18 @@ public class HookGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		float dist = Vector2.Distance(playerObj.transform.position, transform.position);
-		if (dist < 50)
+		if (playerObj != null)
 		{
-			GenerateHooks(50);
+			float dist = Vector2.Distance(playerObj.transform.position, transform.position);
+			if (dist < 50)
+			{
+				GenerateHooks(50);
+			}
+
+		}
+		else if (FindObjectOfType<PlayerMaster>())
+		{
+			playerObj = FindObjectOfType<PlayerMaster>().gameObject;
 		}
     }
 

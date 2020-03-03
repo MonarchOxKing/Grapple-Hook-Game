@@ -21,20 +21,27 @@ public class CameraController : MonoBehaviour
     void Update()
     {
 
-
-
-		if (targetObject.transform.position.y < yMinLock || targetObject.transform.position.y > yMaxLock)
+		if (targetObject != null)
 		{
-			//followPos = new Vector3(targetObject.transform.position.x, transform.position.y, transform.position.z);
-			followPos = new Vector3(targetObject.transform.position.x, transform.position.y, transform.position.z);
 
-			transform.position = followPos;
+			if (targetObject.transform.position.y < yMinLock || targetObject.transform.position.y > yMaxLock)
+			{
+				//followPos = new Vector3(targetObject.transform.position.x, transform.position.y, transform.position.z);
+				followPos = new Vector3(targetObject.transform.position.x, transform.position.y, transform.position.z);
+
+				transform.position = followPos;
+
+			}
+			else
+			{
+				followPos = new Vector3(targetObject.transform.position.x, targetObject.transform.position.y, transform.position.z);
+				transform.position = followPos;
+			}
 
 		}
-		else
+		else if (FindObjectOfType<PlayerMaster>())
 		{
-			followPos = new Vector3(targetObject.transform.position.x, targetObject.transform.position.y, transform.position.z);
-			transform.position = followPos;
+			targetObject = FindObjectOfType<PlayerMaster>().gameObject;
 		}
 	}
 }

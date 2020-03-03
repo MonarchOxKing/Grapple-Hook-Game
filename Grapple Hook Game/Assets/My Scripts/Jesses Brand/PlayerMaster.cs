@@ -24,15 +24,26 @@ public class PlayerMaster : MonoBehaviour
 
 	private DistanceJoint2D dJoint;
 	private Rigidbody2D rb;
+	private Animator anim;
 
-	private SpriteRenderer sRenderer;
-	public Sprite sprRightSwing;
-	public Sprite sprLeftSwing;
-	public Sprite sprIdleAir;
+	//private SpriteRenderer sRenderer;
+	//public Sprite sprRightSwing;
+	//public Sprite sprLeftSwing;
+	//public Sprite sprIdleAir;
 
 	public GameObject deathObj;
 
 	private bool unHook;
+
+	//private GameObject spawnPointObj;
+	private MainManager mainManager;
+
+	//Audio
+	public AudioClip fallDeathAudio;
+	public AudioClip collideDeathAudio;
+
+
+
 	//Line Renderer
 	#region
 	[Header("Line Rendering")]
@@ -54,8 +65,11 @@ public class PlayerMaster : MonoBehaviour
 		dJoint = GetComponent<DistanceJoint2D>();
 		lineR = GetComponent<LineRenderer>();
 		hookPointTag = "Grapple Point";
-		sRenderer = GetComponent<SpriteRenderer>();
-		sRenderer.sprite = sprRightSwing;
+		//sRenderer = GetComponent<SpriteRenderer>();
+		//sRenderer.sprite = sprRightSwing;
+		anim = GetComponentInChildren<Animator>();
+		mainManager = FindObjectOfType<MainManager>();
+
 		//Line Rendering
 		lineR.material.color = lineColour;
 		lineR.material = myMaterial;
@@ -81,10 +95,13 @@ public class PlayerMaster : MonoBehaviour
 
 			case PlayerState.Running:
 				transform.Translate(Vector3.right * speedMod * Time.deltaTime, Space.World);
+				anim.SetInteger("PlayerState", 2);
 				break;
 
 			case PlayerState.Flying:
 				transform.Translate(Vector3.right * speedMod * Time.deltaTime, Space.World); //<---- this could be affecting smoothness
+				anim.SetInteger("PlayerState", 3);
+
 				break;
 		}
 
@@ -138,7 +155,7 @@ public class PlayerMaster : MonoBehaviour
 	{
 		lineR.enabled = false;
 		dJoint.enabled = false;
-		sRenderer.sprite = sprIdleAir;
+		//sRenderer.sprite = sprIdleAir;
 		//myState = PlayerState.Running;
 		myState = PlayerState.Flying;
 		unHook = true;
@@ -147,15 +164,20 @@ public class PlayerMaster : MonoBehaviour
 	void SpriteSetter()
 	{
 		//if (transform.position.x < position2.position.x && sRenderer.sprite != sprRightSwing)
-		if (transform.position.x < position2.position.x && sRenderer.sprite != sprRightSwing)
+		if (transform.position.x < position2.position.x)
 		{
 			print("moving right");
-			sRenderer.sprite = sprRightSwing;
+			//sRenderer.sprite = sprRightSwing;
+			anim.SetInteger("PlayerState", 0);
+
 		}
-		else if (transform.position.x >= position2.position.x && sRenderer.sprite != sprLeftSwing)
+		else if (transform.position.x >= position2.position.x)
 		{
 			print("moving left");
-			sRenderer.sprite = sprLeftSwing;
+			//sRenderer.sprite = sprLeftSwing;
+
+			anim.SetInteger("PlayerState", 1);
+
 
 		}
 		else
@@ -166,21 +188,28 @@ public class PlayerMaster : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Enemy"))
+		//if (other.CompareTag("Enemy"))
+		//{
+
+		//	GameObject myDeathObj = Instantiate(deathObj, transform.position, transform.rotation);
+		//	DeathScript myScript = myDeathObj.GetComponent<DeathScript>();
+
+		//	myScript.deathAudio = collideDeathAudio;
+
+		//	Destroy(gameObject);
+		//}
+
+		if (other.CompareTag("Death Area Tag"))
 		{
-			Destroy(gameObject);
-
 			GameObject myDeathObj = Instantiate(deathObj, transform.position, transform.rotation);
+			DeathScript myScript = myDeathObj.GetComponent<DeathScript>();
 
-			//myDeathObj.GetComponent
-		}
+			myScript.deathAudio = fallDeathAudio;
 
-		if (other.CompareTag("FallZone"))
-		{
+			mainManager.PlayerDeath();
+
 			Destroy(gameObject);
-
-			GameObject myDeathObj = Instantiate(deathObj, transform.position, transform.rotation);
-
+			//StartCoroutine(DelayedRespawn(2f));
 		}
 	}
 
@@ -191,13 +220,13 @@ public class PlayerMaster : MonoBehaviour
 			if (myState == PlayerState.Swinging)
 			{
 				UnHook();
-			}
-			
+			}			
 				myState = PlayerState.Running;
+		}
 
-			
-
-
+		if (collision.gameObject.CompareTag("FinishLine"))
+		{
+			CrossFinish();
 		}
 	}
 
@@ -283,6 +312,18 @@ public class PlayerMaster : MonoBehaviour
 	void PlayerDeath()
 	{
 		Destroy(gameObject);
+
+	}
+
+	IEnumerator DelayedRespawn(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		//transform.position = spawnPointObj.transform.position;
+	}
+
+	void CrossFinish()
+	{
+
 
 	}
 
