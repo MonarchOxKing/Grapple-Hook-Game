@@ -45,18 +45,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6622170107926803543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5259b1655b6df3149aa092fe89b7c911, type: 3}
+  m_Script: {fileID: 11500000, guid: a874b49f9e175ee4c9daa6df0e206aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myState: 0
   hookButton: 32
   doMovement: 1
-  speedMod: 2
-  jumpForce: 500
-  hookForce: 200
-  verticalHookForce: 100
-  deathObj: {fileID: 1311340665535996394, guid: 60e2c56690194744b8ccbcb8b3cfb3e7,
-    type: 3}
+  speedMod: 1
+  jumpForce: 30
+  hookForce: 250
+  verticalHookForce: 25
+  deathObj: {fileID: 0}
   fallDeathAudio: {fileID: 0}
   collideDeathAudio: {fileID: 0}
   lineColour: {r: 0, g: 0, b: 0, a: 0}
@@ -111,8 +110,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
+        time: 0.032966614
+        value: 0.22535133
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -317,7 +316,7 @@ Animator:
   m_GameObject: {fileID: 6622170108823749547}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 02a42e8f9b13f734cba254a0679dd571, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
